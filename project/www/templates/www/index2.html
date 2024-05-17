@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {%load static%}
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="{% static 'footer.css' %}">
     <link rel="stylesheet" href="{% static 'reset.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
-
+    <link rel="stylesheet" href="{% static 'main2.css' %}">
     <title>Document</title>
 </head>
 <body>
@@ -17,5 +17,40 @@
             <a href="{% url 'index2' %}"><button class="button">Give Opinion</button></a>
         </div>
     </header>
+    <section class="main2">
+        <div class="container">
+        {% for accepted_offer in accepted_offers %}
+        <div class="offer">
+            <div class="data_container">
+                <div class="name_surname">
+                    <p class="data"><span>Name:</span>{{ accepted_offer.name }}</p>
+            
+                    <p class="data">{{ accepted_offer.surname }}</p>
+                </div>   
+                <p class="data"><span>E-mail:</span>{{ accepted_offer.mail }}</p>
+                
+                <p class="data"><span>Number:</span>{{ accepted_offer.number }}</p>
+                      
+                <p class="data"><span>Price:</span>{{ accepted_offer.price }}$</p>
+
+                <p class="data"><span>Industry:</span>
+                    {% for industry in accepted_offer.industry.all %}
+                    {{ industry.name }}
+                {% endfor %}
+                </p>
+                <p class="data text "><span>Description:</span>"{{ accepted_offer.text }}"</p>
+            </div>
+            <img class="photo" src="{{ accepted_offer.photo.url }}" alt="Photo">
+            
+           
+        </div>
+        {% endfor %}
+    </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <h2>Give Opinion</h2>
+        </div>
+    </footer>
 </body>
 </html>

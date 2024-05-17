@@ -11,10 +11,11 @@ class Industry(models.Model):
         return self.name
 
 class Offer(models.Model):
-    name = models.CharField(max_length=10)
-    surname = models.CharField(max_length=10)
+    name = models.CharField(max_length=15)
+    surname = models.CharField(max_length=15)
     mail = models.CharField(max_length=100)
     number = models.CharField(max_length=12)
+    price = models.CharField(max_length=12)
     photo = models.ImageField(upload_to='images')
     industry = models.ManyToManyField(Industry)
     text = models.CharField(max_length=150)
@@ -22,3 +23,16 @@ class Offer(models.Model):
 
     def __str__(self):
         return self.name + " " + self.surname
+    
+
+class AcceptedOffer(models.Model):
+    name = models.CharField(max_length=15)
+    surname = models.CharField(max_length=15)
+    mail = models.EmailField(100)
+    number = models.CharField(max_length=12)
+    price = models.CharField(max_length=12)
+    photo = models.ImageField(upload_to='photos/')
+    text = models.TextField()
+    industry = models.ManyToManyField(Industry)
+    def __str__(self):
+       return self.name + " " + self.surname

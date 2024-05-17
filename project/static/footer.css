@@ -1,0 +1,18 @@
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem 0;
+}
+
+.footer > .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container > h2 {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}

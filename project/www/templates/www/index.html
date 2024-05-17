@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="{% static 'footer.css' %}">
     <link rel="stylesheet" href="{% static 'reset.css' %}">
     <link rel="stylesheet" href="{% static 'main.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
@@ -20,7 +20,7 @@
     </header>
     <main>
         <div class="container">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
             
                 {{ offer_form.name }}
@@ -30,6 +30,8 @@
                 {{ offer_form.mail }}
             
                 {{ offer_form.number }}
+        
+                {{ offer_form.price }}
                 <label for="id_photo">Photo:</label> 
                 {{ offer_form.photo }}
                 <label for="id_industry">Industry:</label>
@@ -39,11 +41,43 @@
                
                 <button type="submit">Submit</button>
             </form>
+           
+            <div class="card">
+                <div class="col col1">
+                    <p>Name:</p>
+                    <p class="data">{{ offer.name }}</p>
+                    <p>Surname:</p>
+                    <p class="data">{{ offer.surname }}</p>
+                    <p>Mail:</p>
+                    <p class="data">{{ offer.mail }}</p>
+                    <p>Number:</p>
+                    <p class="data">{{ offer.number }}</p>
+                    <p>Price:</p>
+                    <p class="data">{{ offer.price }}$</p>
+                    <p>Industry:</p>
+                    <p class="data"> 
+                    {% for industry in selected_industries %}
+                        {{ industry }}
+                    {% endfor %}</p>
+                </div>
+                <div class="col col2">
+                    <img class="photo" src="{{ offer.photo.url }}" alt="Photo">
+                    <p>Text:</p>
+                    <p class="data text"> {{ offer.text }}</p>
+                    <form method="post" action="{% url 'accept_offer' %}" enctype="multipart/form-data">
+        
+                        {% csrf_token %}
+                        <input type="hidden" name="offer_id" value="{{ offer.id }}"> 
+                        <button type="submit" name="accept_button">Accept</button>
+                    </form>
+                </div>
+            </div>
+     
         </div>
     </main>
-    <footer>
+    <footer class="footer">
         <div class="container">
-
+            <h2>Create Service</h2>
         </div>
     </footer>
 </body>
