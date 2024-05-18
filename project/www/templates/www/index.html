@@ -4,17 +4,16 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'footer.css' %}">
     <link rel="stylesheet" href="{% static 'reset.css' %}">
-    <link rel="stylesheet" href="{% static 'main.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
-
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'footer.css' %}">
+    <title>Django Projekt</title>
 </head>
 <body>
-    <header>
+    <header class="header">
         <div class="container">
-            <a href="{% url 'index' %}"><button class="button">Create Service</button></a>
+            <a href="{% url 'index' %}"><button class="button"> Create Service</button></a>
             <a href="{% url 'index2' %}"><button class="button">Give Opinion</button></a>
         </div>
     </header>
@@ -35,13 +34,13 @@
                 <label for="id_photo">Photo:</label> 
                 {{ offer_form.photo }}
                 <label for="id_industry">Industry:</label>
-                 {{ offer_form.industry }}
+                {{ offer_form.industry }}
                 
                 {{ offer_form.text }}
                
-                <button type="submit">Submit</button>
+                 <button type="submit">Submit</button>
             </form>
-           
+        
             <div class="card">
                 <div class="col col1">
                     <p>Name:</p>
@@ -63,7 +62,7 @@
                     {% endfor %}</p>
                 </div>
                 <div class="col col2">
-                    <img class="photo" src="{{ offer.photo.url }}" alt="Photo">
+                    <img class="photo" src="{{ offer.photo.url }}">
                     <p>Text:</p>
                     <p class="data text"> {{ offer.text }}</p>
                     <form method="post" action="{% url 'accept_offer' %}" enctype="multipart/form-data">
