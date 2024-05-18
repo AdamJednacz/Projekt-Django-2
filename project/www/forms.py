@@ -24,3 +24,4 @@ class OfferForm(forms.ModelForm):
         fields = '__all__'
 
 
+

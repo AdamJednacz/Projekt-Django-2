@@ -36,3 +36,19 @@ class AcceptedOffer(models.Model):
     industry = models.ManyToManyField(Industry)
     def __str__(self):
        return self.name + " " + self.surname
+    
+
+    
+class Like(models.Model):
+    comment = models.ForeignKey(AcceptedOffer, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    clicks = models.IntegerField(default=0)
+    def __str__(self):
+        return f'Like on {self.comment}'
+
+class Unlike(models.Model):
+    comment = models.ForeignKey(AcceptedOffer, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    clicks = models.IntegerField(default=0)
+    def __str__(self):
+        return f'Unlike on {self.comment}'    

@@ -21,29 +21,40 @@
         <div class="container">
         {% for accepted_offer in accepted_offers %}
         <div class="offer">
-            <div class="data_container">
-                <div class="name_surname">
-                    <p class="data"><span>Name:</span>{{ accepted_offer.name }}</p>
-            
-                    <p class="data">{{ accepted_offer.surname }}</p>
-                </div>   
-                <p class="data"><span>E-mail:</span>{{ accepted_offer.mail }}</p>
-                
-                <p class="data"><span>Number:</span>{{ accepted_offer.number }}</p>
-                      
-                <p class="data"><span>Price:</span>{{ accepted_offer.price }}$</p>
-
-                <p class="data"><span>Industry:</span>
-                    {% for industry in accepted_offer.industry.all %}
-                    {{ industry.name }}
-                {% endfor %}
-                </p>
-                <p class="data text "><span>Description:</span>"{{ accepted_offer.text }}"</p>
+            <div class="offer_container">
+                <div class="data_container">
+                    <div class="name_surname">
+                        <p class="data"><span>Name:</span>{{ accepted_offer.name }}</p>
+                        <p class="data">{{ accepted_offer.surname }}</p>
+                    </div>   
+                    <p class="data"><span>E-mail:</span>{{ accepted_offer.mail }}</p>
+                    <p class="data"><span>Number:</span>{{ accepted_offer.number }}</p>
+                    <p class="data"><span>Price:</span>{{ accepted_offer.price}}$</p>
+                    <p class="data"><span>Industry:</span>
+                        {% for industry in accepted_offer.industry.all %}
+                        {{ industry.name }}
+                        {% endfor %}
+                    </p>
+                    <p class="data text"><span>Description:</span>"{{ accepted_offer.text }}"</p>
+                </div>
+                <img class="photo" src="{{ accepted_offer.photo.url }}" alt="Photo">
             </div>
-            <img class="photo" src="{{ accepted_offer.photo.url }}" alt="Photo">
-            
-           
+            <div class="like_container">
+                <form method="post" action="{% url 'like' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="accept_offer_id" value="{{ accepted_offer.id }}">
+                    <button class="like btn" type="submit">Like {{ accepted_offer.like_set.count }}</button>
+                  
+                </form>
+                <form method="post" action="{% url 'unlike' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="accept_offer_id" value="{{ accepted_offer.id }}">
+                    <button class="unlike btn" type="submit">Unlike {{ accepted_offer.unlike_set.count }}</button>
+                    
+                </form>
+            </div>
         </div>
+        
         {% endfor %}
     </div>
     </section>

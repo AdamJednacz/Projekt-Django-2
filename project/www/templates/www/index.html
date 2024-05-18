@@ -53,7 +53,9 @@
                     <p>Number:</p>
                     <p class="data">{{ offer.number }}</p>
                     <p>Price:</p>
-                    <p class="data">{{ offer.price }}$</p>
+                    <p class="data"> {% if offer.price %}
+                        {{ offer.price }}$
+                    {% endif %}</p>
                     <p>Industry:</p>
                     <p class="data"> 
                     {% for industry in selected_industries %}

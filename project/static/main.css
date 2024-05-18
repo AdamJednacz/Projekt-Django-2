@@ -14,7 +14,6 @@ main > .container{
 form{
     display: flex;
     flex-direction: column;
-  
 }
 
 form > button{
@@ -63,6 +62,19 @@ label{
     font-weight: bold;
 }
 
+
+.card{
+
+    display: flex;
+    background-color: #fff;
+    border-radius: 12px;
+    font-size: 1.5vw;
+    padding: 2rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+.data{
+    font-size: 1rem;
+}
 .col1{
     width: 10em;
     margin-right: 3rem;
@@ -76,14 +88,8 @@ label{
 .col2 > p{
     margin: 1rem 0;
 }
-.card{
-
-    display: flex;
-    background-color: #fff;
-    border-radius: 12px;
-    font-size: 1.5rem;
-    padding: 3rem;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+.col2 > button {
+    margin-top: 2rem;
 }
 .photo{
     width: 15rem;
@@ -94,13 +100,4 @@ label{
     object-fit: cover;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
-
-.data{
-    font-size: 1rem;
-}
-
-.col2 > button {
-    margin-top: 2rem;
-}
-
 
